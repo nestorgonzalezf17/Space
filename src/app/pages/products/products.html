@@ -1,0 +1,21 @@
+<div class="productos-section">
+  <div class="galaxy-background"></div>
+
+  <div class="content-layer container py-5">
+    <h2 class="text-center mb-4 titulo-galactico">Productos Espaciales</h2>
+    <div class="row">
+      @for (producto of productos; track producto.id) {
+        <div class="col-md-4 mb-4">
+          <div class="card tarjeta-espacial h-100 text-white text-center">
+            <img [src]="producto.imagen" class="card-img-top img-fluid borde-luminoso" [alt]="producto.nombre">
+            <div class="card-body">
+              <h5 class="card-title">{{ producto.nombre }}</h5>
+              <p class="card-text">{{ producto.descripcion }}</p>
+              <p class="fw-bold precio">💰 ${{ producto.precio }} dollars</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

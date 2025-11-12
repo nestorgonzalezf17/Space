@@ -1,0 +1,83 @@
+.productos-section {
+  position: relative;
+  background: linear-gradient(to bottom, #0b0c2a, #000000);
+  overflow: hidden;
+
+  .galaxy-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #1a1a40 0%, #000000 100%);
+    z-index: 0;
+    animation: galaxyDrift 80s linear infinite;
+    pointer-events: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      opacity: 0.15;
+      animation: starsFloat 120s linear infinite;
+    }
+  }
+
+  @keyframes galaxyDrift {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
+  }
+
+  @keyframes starsFloat {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-500px, -500px); }
+  }
+
+  .content-layer {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.titulo-galactico {
+  font-family: 'Orbitron', sans-serif;
+  color: #00ffe0;
+  text-shadow: 0 0 10px #00ffe0;
+}
+
+.tarjeta-espacial {
+  background: rgba(20, 20, 40, 0.9);
+  border: 1px solid #00ffe0;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 255, 224, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px rgba(0, 255, 224, 0.6);
+  }
+
+  .card-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text {
+    font-size: 0.95rem;
+    color: #cfd8dc;
+  }
+
+  .precio {
+    color: #00ffe0;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+}
+
+.borde-luminoso {
+  border: 2px solid #00ffe0;
+  border-radius: 8px;
+}
