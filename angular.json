@@ -1,3 +1,5 @@
+/*ng build --output-path=dist --base-href=/Space/
+  ng deploy*/
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
@@ -17,7 +19,8 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/mine-page",
+            "outputPath": "dist",
+            "baseHref": "/Space/",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -107,5 +110,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "7d5f9f0a-9bd9-4861-9710-2f8c1667661c"
   }
 }
