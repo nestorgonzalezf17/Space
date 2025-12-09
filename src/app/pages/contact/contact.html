@@ -1,36 +1,77 @@
-<div class="contact-container">
-  <div class="card contact-card shadow-lg">
-    <div class="card-header text-center">
-      <h2>Contáctame</h2>
-      <p>¿Tienes preguntas o ideas cósmicas? Escríbeme aquí.</p>
-    </div>
-    <div class="card-body">
-      <form>
-        <!-- Nombre -->
-        <div class="mb-3">
-          <label for="name" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="name" placeholder="Tu nombre" required>
+<div class="contact-container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <div class="card contact-card shadow-lg">
+        <div class="card-header text-center">
+          <h2>Contáctame</h2>
+          <p>¿Tienes preguntas o ideas cósmicas? Escríbeme aquí.</p>
         </div>
 
-        <!-- Email -->
-        <div class="mb-3">
-          <label for="email" class="form-label">Correo electrónico</label>
-          <input type="email" class="form-control" id="email" placeholder="tuemail@ejemplo.com" required>
-        </div>
+        <div class="card-body">
+          <form [formGroup]="contactForm" (ngSubmit)="enviar()" novalidate>
+            
+            <!-- Nombre -->
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input id="nombre" type="text" class="form-control" formControlName="nombre"
+                [class.is-invalid]="f['nombre'].invalid && f['nombre'].touched" placeholder="Tu nombre" />
+              <div class="invalid-feedback" *ngIf="f['nombre'].touched && f['nombre'].errors">
+                <div *ngIf="f['nombre'].errors?.['required']">El nombre es obligatorio.</div>
+                <div *ngIf="f['nombre'].errors?.['minlength']">
+                  Mínimo {{ f['nombre'].errors?.['minlength']?.requiredLength }} caracteres.
+                </div>
+              </div>
+            </div>
 
-        <!-- Mensaje -->
-        <div class="mb-3">
-          <label for="message" class="form-label">Mensaje</label>
-          <textarea class="form-control" id="message" rows="4" placeholder="Escribe tu mensaje..." required></textarea>
-        </div>
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input id="email" type="email" class="form-control" formControlName="email"
+                [class.is-invalid]="f['email'].invalid && f['email'].touched" placeholder="tuemail@ejemplo.com" />
+              <div class="invalid-feedback" *ngIf="f['email'].touched && f['email'].errors">
+                <div *ngIf="f['email'].errors?.['required']">El correo es obligatorio.</div>
+                <div *ngIf="f['email'].errors?.['email']">Formato de correo inválido.</div>
+              </div>
+            </div>
 
-        <!-- Botón -->
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary btn-lg">
-            Enviar 🚀
-          </button>
+            <!-- Asunto -->
+            <div class="mb-3">
+              <label for="asunto" class="form-label">Asunto</label>
+              <input id="asunto" type="text" class="form-control" formControlName="asunto"
+                [class.is-invalid]="f['asunto'].invalid && f['asunto'].touched" placeholder="Tema del mensaje" />
+              <div class="invalid-feedback" *ngIf="f['asunto'].touched && f['asunto'].errors">
+                <div *ngIf="f['asunto'].errors?.['required']">El asunto es obligatorio.</div>
+                <div *ngIf="f['asunto'].errors?.['minlength']">
+                  Mínimo {{ f['asunto'].errors?.['minlength']?.requiredLength }} caracteres.
+                </div>
+              </div>
+            </div>
+
+            <!-- Mensaje -->
+            <div class="mb-3">
+              <label for="mensaje" class="form-label">Mensaje</label>
+              <textarea id="mensaje" rows="4" class="form-control" formControlName="mensaje"
+                [class.is-invalid]="f['mensaje'].invalid && f['mensaje'].touched" placeholder="Escribe tu mensaje..."></textarea>
+              <div class="invalid-feedback" *ngIf="f['mensaje'].touched && f['mensaje'].errors">
+                <div *ngIf="f['mensaje'].errors?.['required']">El mensaje es obligatorio.</div>
+                <div *ngIf="f['mensaje'].errors?.['minlength']">
+                  Mínimo {{ f['mensaje'].errors?.['minlength']?.requiredLength }} caracteres.
+                </div>
+              </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex gap-2">
+              <button type="submit" class="btn btn-primary flex-fill" [disabled]="submitting">
+                Enviar 🚀
+              </button>
+              <button type="button" class="btn btn-secondary flex-fill" (click)="cancelar()" [disabled]="submitting">
+                Cancelar
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

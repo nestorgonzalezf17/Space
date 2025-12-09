@@ -1,5 +1,4 @@
-/*ng build --output-path=dist --base-href=/Space/
-  ng deploy*/
+
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
